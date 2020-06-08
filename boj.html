@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+	<header>
+	</header>
+	<script>
+		const BASE_URL = ["https://www.acmicpc.net/problem/",
+		"https://www.acmicpc.net/submit/",
+		"https://en.dict.naver.com/#/search?range=all&query=",
+		];
+		const mWidth = screen.width;
+		const mHeight = screen.height;
+		const windowFeatures = `scrollbars=no,resizable=no,status=no,location=no,titlebar=no,toolbar=no,menubar=no,top=300,width=${mWidth/2},height=${mHeight-300}`;
+		const WIN1 = "prob_win";
+		const WIN2 = "solve_win";
+
+		function enter(){
+			if(window.event.keyCode == 13){
+				search();
+				setTime();
+			}
+		}
+		
+		function openWindow(){
+			window.open("", WIN1);
+			window.open("", WIN2);	
+		}
+
+		function setTime(){
+			let today = new Date();
+			// document.getElementById("time").textContent = `${today.getFullYear()}:${today.getMonth()+1)}:${today.getDate()}`;
+		}
+
+		function search(){
+			var mKeyword = document.getElementById('keyword').value;
+
+			if(isNaN(mKeyword)	){
+				alert("Please enter number.");
+				return;
+			}
+
+			window.open(`${BASE_URL[0]}${mKeyword}`, WIN1, `${windowFeatures},left=0`);
+			window.open(`${BASE_URL[1]}${mKeyword}`, WIN2, `${windowFeatures},left=${mWidth/2}`);
+			// window.open(`${BASE_URL[1]}${mKeyword}`, "CNN_WindowName", windowFeatures);
+		}
+	</script>
+</head>
+<body>
+	<div>
+		백준 문제 번호: <input id="keyword" type="text" onkeyup="enter()"><input type="button" value="검색" onclick="search()">
+		<input type="button" value="열기" onclick="openWindow()">
+		<h5 id="time"></h5>
+	</div>
+	<div style="width:100%; height:100%;">
+		<div style="border: 1px solid black; float: left; width: 49%; height:100%;">
+			<iframe id="problem" src="https://www.github.com" style="width: 100%; height: 1000px;">
+			</iframe>
+		</div>
+		<div style="border: 1px solid black; float: left; width: 49%; height:100%;">
+			<iframe id="solution" src="https://www.google.com" style="width: 100%; height: 1000px;">
+			</iframe>
+		</div>
+	</div>
+</body>
+</html>
